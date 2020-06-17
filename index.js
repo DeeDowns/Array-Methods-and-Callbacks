@@ -68,13 +68,22 @@ Parameters:
  * callback function getWinners
  * callback function getYears
  */
-function getWinnersByYear(winnersCB,yearsCB) {
-    let allWins = []
-    for(let i = 0; i < winnersCB.length; i++){
-        allWins.push(`in ${yearsCB[i]}, ${winnersCB[i]} won the world cup`)
-    }
-   return allWins;
-}; 
+//This was my original code, but it did not include an array method
+// function getWinnersByYear(winnersCB,yearsCB) {
+//     let allWins = []
+//     for(let i = 0; i < winnersCB.length; i++){
+//         allWins.push(`in ${yearsCB[i]}, ${winnersCB[i]} won the world cup`)
+//     }
+//    return allWins;
+// }; 
+
+function getWinnersByYear(winnersCB, yearsCB) {
+    const allWins = winnersCB.map((item, index) => {
+      return `in ${yearsCB[index]}, ${item} won the world cup`
+    });
+    return allWins
+}
+
 
 console.log(getWinnersByYear(getWinners(getFinals(fifaData)), getYears(getFinals(fifaData))));
 
