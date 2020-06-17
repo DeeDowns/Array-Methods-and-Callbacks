@@ -68,14 +68,16 @@ Parameters:
  * callback function getWinners
  * callback function getYears
  */
-//This was my original code, but it did not include an array method
-// function getWinnersByYear(winnersCB,yearsCB) {
-//     let allWins = []
-//     for(let i = 0; i < winnersCB.length; i++){
-//         allWins.push(`in ${yearsCB[i]}, ${winnersCB[i]} won the world cup`)
-//     }
-//    return allWins;
-// }; 
+
+/*This was my original code, but it did not include an array method
+function getWinnersByYear(winnersCB,yearsCB) {
+    let allWins = []
+    for(let i = 0; i < winnersCB.length; i++){
+        allWins.push(`in ${yearsCB[i]}, ${winnersCB[i]} won the world cup`)
+    }
+   return allWins;
+}; 
+*/
 
 function getWinnersByYear(winnersCB, yearsCB) {
     const allWins = winnersCB.map((item, index) => {
@@ -90,13 +92,11 @@ console.log(getWinnersByYear(getWinners(getFinals(fifaData)), getYears(getFinals
 
 /* Task 7: Write a function called `getAverageGoals` that accepts a parameter `data` and returns the the average number of home team goals and away team goals scored per match (Hint: use .reduce and do this in 2 steps) */
 function getAverageGoals(data) {
-    const homeGoals = data.map((item) => item["Home Team Goals"])
-    const AwayGoals = data.map((item) => item["Away Team Goals"])
-    const homeGoalsTotal = homeGoals.reduce((acc, item) => {
-        return acc + item
+    const homeGoalsTotal = data.reduce((acc, item) => {
+        return acc + item["Home Team Goals"]
     }, 0);
-    const awayGoalsTotal = AwayGoals.reduce((acc, item) => {
-        return acc + item
+    const awayGoalsTotal = data.reduce((acc, item) => {
+        return acc + item["Away Team Goals"]
     }, 0);
     let averageGoals = [];
     let homeAvg = homeGoalsTotal / data.length;
